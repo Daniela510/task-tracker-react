@@ -14,7 +14,7 @@ function App() {
     },
     {
       id: 2,
-      text: "Meeting at School",
+      text: "Meeting at School yooooo",
       day: "Feb 6th at 1:30pm",
       reminder: true,
     },
@@ -57,7 +57,6 @@ function App() {
           onAdd={addTask}
           onDelete={deleteTask}
           onToggle={tReminder}
-          
         />
       ) : (
         "No Tasks to show"
