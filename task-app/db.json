@@ -4,27 +4,25 @@
       "id": 1,
       "text": "Doctors Appointment",
       "day": "Feb 5that 2:30pm",
-      "reminder": true
+      "rem": true
     },
     {
       "id": 2,
       "text": "Meeting at School",
       "day": "Feb 6th at 1:30pm",
-      "reminder": false
+      "rem": true
     },
     {
-      "text": "Take test",
-      "day": "Monday 14th",
-      "rem": true,
-      "id": 3,
-      "reminder": true
+      "text": "Pizda masii",
+      "day": "8th Oct",
+      "rem": false,
+      "id": 3
     },
     {
-      "text": "Take another fucking test",
-      "day": "5th feb",
+      "text": "It was that huh",
+      "day": "5th Sept",
       "rem": true,
-      "id": 4,
-      "reminder": true
+      "id": 4
     }
   ]
 }

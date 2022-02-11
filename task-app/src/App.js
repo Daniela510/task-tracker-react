@@ -1,7 +1,10 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import Footer from "./components/Footer";
 import AddTask from "./components/AddTask";
+import About from "./components/About";
 import { useState, useEffect } from "react";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -39,8 +42,8 @@ function App() {
       },
       body: JSON.stringify(task),
     });
-    const data = await res.json();
-    setTasks([...tasks, data]);
+    const newTask = await res.json();
+    setTasks([...tasks, newTask]);
 
     // const id = Math.floor(Math.random() * 10000) + 1;
     // const newTask = { id, ...task };
@@ -59,7 +62,7 @@ function App() {
 
   const tReminder = async(id) => {
     const taskToToggle = await fetchTask(id)
-    const upTask = {... taskToToggle, reminder: !taskToToggle.reminder}
+    const upTask = {... taskToToggle, rem: !taskToToggle.rem}
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
       headers: {
@@ -73,17 +76,22 @@ function App() {
 
     setTasks(
       tasks.map((task) =>
-        task.id == id ? { ...task, reminder: data.reminder } : task
+        task.id == id ? { ...task, rem: data.rem } : task
       )
     )
     console.log(id)
     };
   return (
+    <Router>
     <div className="container">
-      <Header
+    <Routes>
+      <Route path='/' exact element={
+        <>
+         <Header
         onAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
+      {/* shorter turnery operator that only takes true */}
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (
         <Tasks
@@ -95,7 +103,13 @@ function App() {
       ) : (
         "No Tasks to show"
       )}
+        </>
+      }/>
+      <Route path='/about' element={<About/>}/>
+      </Routes>
+      <Footer />
     </div>
+    </Router>
   );
 }
 
